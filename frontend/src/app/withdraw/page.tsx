@@ -22,7 +22,7 @@ export default function Withdraw() {
       const token = localStorage.getItem('smt_token');
       if (!token) { router.push('/login'); return; }
       try {
-        const res  = await fetch('http://localhost:5000/api/wallet/balance', { headers: { Authorization: `Bearer ${token}` }});
+        const res  = await fetch('/api/wallet/balance', { headers: { Authorization: `Bearer ${token}` }});
         const data = await res.json();
         if (!data.error) setAvailableBalance(data.availableBalance ?? 0);
       } catch { console.error('Failed fetching balance'); }
@@ -40,7 +40,7 @@ export default function Withdraw() {
     setLoading(true); setError('');
     try {
       const token = localStorage.getItem('smt_token');
-      const res = await fetch('http://localhost:5000/api/withdraw/request', {
+      const res = await fetch('/api/withdraw/request', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify({ amount, walletAddress })
@@ -65,7 +65,7 @@ export default function Withdraw() {
     setLoading(true); setError('');
     try {
       const token = localStorage.getItem('smt_token');
-      const res = await fetch('http://localhost:5000/api/withdraw/confirm', {
+      const res = await fetch('/api/withdraw/confirm', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify({ otp, withdrawalId })

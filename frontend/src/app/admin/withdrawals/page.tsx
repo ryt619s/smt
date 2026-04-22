@@ -16,7 +16,7 @@ export default function AdminWithdrawals() {
 
   const fetchWithdrawals = async () => {
     setLoading(true);
-    const res  = await fetch(`http://localhost:5000/api/admin/withdrawals?status=${filter}`, { headers: { Authorization: `Bearer ${token}` } });
+    const res  = await fetch(`/api/admin/withdrawals?status=${filter}`, { headers: { Authorization: `Bearer ${token}` } });
     const data = await res.json();
     setWithdrawals(data.withdrawals || []);
     setLoading(false);
@@ -27,7 +27,7 @@ export default function AdminWithdrawals() {
   const handleAction = async (id: string, action: 'approve' | 'reject') => {
     setProcessing(id);
     const txHash = action === 'approve' ? prompt('Enter transaction hash (optional):') || '' : '';
-    const res = await fetch(`http://localhost:5000/api/admin/withdrawals/${id}/${action}`, {
+    const res = await fetch(`/api/admin/withdrawals/${id}/${action}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
       body: JSON.stringify({ txHash }),

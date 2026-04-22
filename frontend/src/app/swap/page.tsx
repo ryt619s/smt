@@ -22,8 +22,8 @@ export default function Swap() {
       if (!token) return router.push('/login');
       
       const [balRes, priceRes] = await Promise.all([
-        fetch('http://localhost:5000/api/wallet/balance', { headers: { Authorization: `Bearer ${token}` }}),
-        fetch('http://localhost:5000/api/swap/price', { headers: { Authorization: `Bearer ${token}` }})
+        fetch('/api/wallet/balance', { headers: { Authorization: `Bearer ${token}` }}),
+        fetch('/api/swap/price', { headers: { Authorization: `Bearer ${token}` }})
       ]);
       
       const bData = await balRes.json();
@@ -47,7 +47,7 @@ export default function Swap() {
     setLoading(true); setError(''); setSuccess('');
     try {
       const token = localStorage.getItem('smt_token');
-      const res = await fetch('http://localhost:5000/api/swap', {
+      const res = await fetch('/api/swap', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify({ amount: Number(amount), direction })

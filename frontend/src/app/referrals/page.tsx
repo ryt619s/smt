@@ -16,7 +16,7 @@ export default function Referrals() {
       const token = localStorage.getItem('smt_token');
       if (!token) { router.push('/login'); return; }
       try {
-        const res = await fetch('http://localhost:5000/api/user/team', { headers: { Authorization: `Bearer ${token}` }});
+        const res = await fetch('/api/user/team', { headers: { Authorization: `Bearer ${token}` }});
         const data = await res.json();
         setTeamStats(data);
       } catch (err) {

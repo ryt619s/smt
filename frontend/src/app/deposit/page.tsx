@@ -30,7 +30,7 @@ export default function Deposit() {
     setLoading(true);
     try {
       const token = localStorage.getItem('smt_token');
-      const res = await fetch('http://localhost:5000/api/wallet/deposit/request', {
+      const res = await fetch('/api/wallet/deposit/request', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify({ amount, txHash })

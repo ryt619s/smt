@@ -14,7 +14,7 @@ export default function Transactions() {
       if (!token) { router.push('/login'); return; }
       
       try {
-        const res = await fetch('http://localhost:5000/api/wallet/transactions?limit=50', {
+        const res = await fetch('/api/wallet/transactions?limit=50', {
           headers: { Authorization: `Bearer ${token}` }
         });
         if (res.status === 401) { localStorage.clear(); router.push('/login'); return; }

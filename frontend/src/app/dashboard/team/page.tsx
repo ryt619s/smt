@@ -20,7 +20,7 @@ export default function TeamPage() {
         const user = JSON.parse(userStr);
         setReferralLink(`http://localhost:3000/signup?ref=${user.referralCode}`);
 
-        const res = await fetch('http://localhost:5000/api/user/team', {
+        const res = await fetch('/api/user/team', {
           headers: { Authorization: `Bearer ${token}` }
         });
         const data = await res.json();

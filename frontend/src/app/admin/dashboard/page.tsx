@@ -23,8 +23,8 @@ export default function AdminDashboard() {
     if (!token) { router.push('/admin/login'); return; }
     try {
       const [statsRes, flagRes] = await Promise.all([
-        fetch('http://localhost:5000/api/admin/stats',         { headers: { Authorization: `Bearer ${token}` } }),
-        fetch('http://localhost:5000/api/admin/flagged-users', { headers: { Authorization: `Bearer ${token}` } }),
+        fetch('/api/admin/stats',         { headers: { Authorization: `Bearer ${token}` } }),
+        fetch('/api/admin/flagged-users', { headers: { Authorization: `Bearer ${token}` } }),
       ]);
       if (statsRes.status === 403) { router.push('/admin/login'); return; }
       const data    = await statsRes.json();

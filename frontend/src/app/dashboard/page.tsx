@@ -23,9 +23,9 @@ export default function Dashboard() {
 
       try {
         const [balRes, txRes, miningRes] = await Promise.all([
-          fetch('http://localhost:5000/api/wallet/balance', { headers: { Authorization: `Bearer ${token}` }}),
-          fetch('http://localhost:5000/api/wallet/transactions?limit=5', { headers: { Authorization: `Bearer ${token}` }}),
-          fetch('http://localhost:5000/api/user/mining/packages', { headers: { Authorization: `Bearer ${token}` }})
+          fetch('/api/wallet/balance', { headers: { Authorization: `Bearer ${token}` }}),
+          fetch('/api/wallet/transactions?limit=5', { headers: { Authorization: `Bearer ${token}` }}),
+          fetch('/api/user/mining/packages', { headers: { Authorization: `Bearer ${token}` }})
         ]);
         if (balRes.status === 401) { localStorage.clear(); router.push('/login'); return; }
         

@@ -16,7 +16,7 @@ export default function AdminDeposits() {
 
   const fetchDeposits = async () => {
     setLoading(true);
-    const res  = await fetch(`http://localhost:5000/api/admin/deposits?status=${filter}`, { headers: { Authorization: `Bearer ${token}` } });
+    const res  = await fetch(`/api/admin/deposits?status=${filter}`, { headers: { Authorization: `Bearer ${token}` } });
     const data = await res.json();
     setDeposits(data.deposits || []);
     setLoading(false);
@@ -26,7 +26,7 @@ export default function AdminDeposits() {
 
   const handleAction = async (id: string, action: 'approve' | 'reject') => {
     setProcessing(id);
-    const res = await fetch(`http://localhost:5000/api/admin/deposits/${id}/${action}`, {
+    const res = await fetch(`/api/admin/deposits/${id}/${action}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
       body: JSON.stringify({}),

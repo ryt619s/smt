@@ -15,7 +15,7 @@ export default function AdminUsers() {
 
   const fetchUsers = async (q = '') => {
     setLoading(true);
-    const res  = await fetch(`http://localhost:5000/api/admin/users?search=${q}&limit=50`, { headers: { Authorization: `Bearer ${token}` } });
+    const res  = await fetch(`/api/admin/users?search=${q}&limit=50`, { headers: { Authorization: `Bearer ${token}` } });
     const data = await res.json();
     setUsers(data.users || []);
     setTotal(data.total || 0);
@@ -28,7 +28,7 @@ export default function AdminUsers() {
 
   const handleToggleBan = async (id: string) => {
     setProcessing(id);
-    await fetch(`http://localhost:5000/api/admin/users/${id}/ban`, { method: 'POST', headers: { Authorization: `Bearer ${token}` } });
+    await fetch(`/api/admin/users/${id}/ban`, { method: 'POST', headers: { Authorization: `Bearer ${token}` } });
     fetchUsers(search);
     setProcessing(null);
   };

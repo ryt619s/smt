@@ -23,8 +23,8 @@ export default function MiningPage() {
       if (!token) return;
 
       const [availRes, activeRes] = await Promise.all([
-        fetch('http://localhost:5000/api/user/mining/available', { headers: { Authorization: `Bearer ${token}` } }),
-        fetch('http://localhost:5000/api/user/mining/packages', { headers: { Authorization: `Bearer ${token}` } })
+        fetch('/api/user/mining/available', { headers: { Authorization: `Bearer ${token}` } }),
+        fetch('/api/user/mining/packages', { headers: { Authorization: `Bearer ${token}` } })
       ]);
 
       const availData = await availRes.json();
@@ -50,7 +50,7 @@ export default function MiningPage() {
 
     try {
       const token = localStorage.getItem('smt_token');
-      const res = await fetch('http://localhost:5000/api/user/mining/purchase', {
+      const res = await fetch('/api/user/mining/purchase', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify({ type })

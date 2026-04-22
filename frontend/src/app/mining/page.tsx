@@ -21,7 +21,7 @@ export default function Mining() {
     try {
       const token = localStorage.getItem('smt_token');
       if (!token) return router.push('/login');
-      const res = await fetch('http://localhost:5000/api/user/mining/packages', { headers: { Authorization: `Bearer ${token}` }});
+      const res = await fetch('/api/user/mining/packages', { headers: { Authorization: `Bearer ${token}` }});
       if (res.status === 401) { localStorage.clear(); router.push('/login'); return; }
       const data = await res.json();
       setActivePackages(data.packages || []);
@@ -40,7 +40,7 @@ export default function Mining() {
 
     try {
       const token = localStorage.getItem('smt_token');
-      const res = await fetch('http://localhost:5000/api/user/mining/purchase', {
+      const res = await fetch('/api/user/mining/purchase', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify({ type })
