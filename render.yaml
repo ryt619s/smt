@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: smt-backend
+    env: node
+    rootDir: backend
+    buildCommand: npm install && npx tsc
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      # Copy other variables from your .env below in the Render Dashboard:
+      # - MONGO_URI
+      # - JWT_SECRET
+      # - FRONTEND_URL (set this to your Vercel URL after deploying frontend)
