@@ -33,6 +33,6 @@ io.on('connection', (socket) => {
   });
 });
 
-server.listen(5000, '0.0.0.0', () => {
+server.listen(PORT, '0.0.0.0', () => {
   console.log(`Server running optimally on HTTP IPv4 port ${PORT} with CORS enabled`);
 });
