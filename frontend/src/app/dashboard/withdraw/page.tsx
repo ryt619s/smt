@@ -1,5 +1,5 @@
 'use client';
-import { DownloadOutline, Key, AlertTriangle, X } from 'lucide-react';
+import { Download, Key, AlertTriangle, X } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 

@@ -49,7 +49,7 @@ export default function HomePage() {
             S
           </div>
           <span className="text-2xl font-black tracking-tight text-white">SMT</span>
-        </nav>
+        </motion.div>
       </nav>
 
       <main className="relative z-10 flex flex-col items-center justify-center px-4 pt-10 pb-24 text-center">
