@@ -7,6 +7,7 @@ export interface ITransaction extends Document {
   amount: number;
   txHash?: string;
   status: 'pending' | 'completed' | 'failed';
+  metadata?: any;
   createdAt: Date;
 }
 
@@ -21,7 +22,8 @@ const TransactionSchema: Schema = new Schema(
     asset: { type: String, enum: ['USDT', 'SMT', 'BNB'], required: true },
     amount: { type: Number, required: true },
     txHash: { type: String },
-    status: { type: String, enum: ['pending', 'completed', 'failed'], default: 'pending' }
+    status: { type: String, enum: ['pending', 'completed', 'failed'], default: 'pending' },
+    metadata: { type: Schema.Types.Mixed }
   },
   { timestamps: true }
 );

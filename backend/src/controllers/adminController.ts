@@ -107,7 +107,10 @@ export const approveDeposit = async (req: Request, res: Response): Promise<void>
     deposit.adminNote = note;
     await deposit.save();
 
-    await new Transaction({ userId: deposit.userId, type: 'deposit', asset: 'USDT', amount: deposit.amount, status: 'completed' }).save();
+    await Transaction.findOneAndUpdate(
+      { 'metadata.depositId': deposit._id },
+      { status: 'completed' }
+    );
 
     res.status(200).json({ message: 'Deposit approved and balance credited', deposit });
   } catch (err: any) {
@@ -127,6 +130,11 @@ export const rejectDeposit = async (req: Request, res: Response): Promise<void> 
     deposit.status = 'rejected';
     deposit.adminNote = note;
     await deposit.save();
+
+    await Transaction.findOneAndUpdate(
+      { 'metadata.depositId': deposit._id },
+      { status: 'failed' }
+    );
 
     res.status(200).json({ message: 'Deposit rejected', deposit });
   } catch (err: any) {
@@ -201,6 +209,11 @@ export const rejectWithdrawal = async (req: Request, res: Response): Promise<voi
     withdrawal.status    = 'rejected';
     withdrawal.adminNote = note;
     await withdrawal.save();
+
+    await Transaction.findOneAndUpdate(
+      { 'metadata.withdrawalId': withdrawal._id },
+      { status: 'failed' }
+    );
 
     res.status(200).json({ message: 'Withdrawal rejected and funds fully refunded to available balance', withdrawal });
   } catch (err: any) {
