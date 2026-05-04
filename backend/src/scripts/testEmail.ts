@@ -1,5 +1,5 @@
 /**
- * Resend Email Delivery Test
+ * Brevo Email Delivery Test
  * 
  * Usage:
  *   npx ts-node src/scripts/testEmail.ts your@email.com
@@ -19,21 +19,17 @@ if (!recipient || !recipient.includes('@')) {
 
 (async () => {
   console.log('\n========================================');
-  console.log('  RESEND EMAIL DELIVERY TEST');
+  console.log('  BREVO EMAIL DELIVERY TEST');
   console.log('========================================');
-  console.log('RESEND_API_KEY :', process.env.RESEND_API_KEY
-    ? `re_****${process.env.RESEND_API_KEY.slice(-6)}`
-    : '❌ NOT SET — add to .env!');
-  console.log('RESEND_FROM    :', process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev (default)');
-  console.log('Recipient      :', recipient);
+  console.log('BREVO_SMTP_USER :', process.env.BREVO_SMTP_USER || '❌ NOT SET');
+  console.log('BREVO_SENDER_EMAIL :', process.env.BREVO_SENDER_EMAIL || '❌ NOT SET');
+  console.log('Recipient       :', recipient);
   console.log('========================================\n');
 
   await sendOTPEmail(recipient, '472819', 'Registration');
 
   console.log('Test complete.');
   console.log('If you see ✅ above, check your inbox (and spam).');
-  console.log('\n⚠️  NOTE: Without a verified domain, Resend only delivers');
-  console.log('   to the email address registered in your Resend account.');
-  console.log('   → Sign up at resend.com, verify your domain to send to anyone.\n');
+  console.log('\n⚠️  NOTE: Ensure the sender email is verified in your Brevo Dashboard.\n');
   process.exit(0);
 })();
